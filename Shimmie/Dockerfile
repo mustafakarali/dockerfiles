@@ -1,4 +1,4 @@
-FROM dandellion/apache-php:latest
+FROM eboraas/apache:latest
 MAINTAINER Daniel Olsen
 
 # install libraries required to interact with supported databases
@@ -9,5 +9,3 @@ RUN apt-get install -y imagemagick unzip
 
 EXPOSE 80
 EXPOSE 443
-
-CMD ["/startup.sh"]
