@@ -1,4 +1,4 @@
-FROM eboraas/apache:stable
+FROM eboraas/apache:latest
 MAINTAINER Daniel
 
 RUN apt-get update && apt-get -y install php5 && apt-get clean
