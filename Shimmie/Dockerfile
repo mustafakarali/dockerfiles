@@ -1,4 +1,4 @@
-FROM eboraas/apache:latest
+FROM eboraas/apache-php:latest
 MAINTAINER Daniel Olsen
 
 # install libraries required to interact with supported databases
