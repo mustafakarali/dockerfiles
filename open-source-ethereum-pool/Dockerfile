@@ -12,3 +12,5 @@ RUN export GOPATH=$HOME/go \
     && git clone https://github.com/sammy007/open-ethereum-pool.git \
     && cd open-ethereum-pool \
     && go build -o ether-pool main.go
+
+WORKDIR open-ethereum-pool
