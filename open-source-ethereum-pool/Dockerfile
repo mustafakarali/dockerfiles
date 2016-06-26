@@ -14,3 +14,8 @@ RUN export GOPATH=$HOME/go \
     && go build -o ether-pool main.go
 
 WORKDIR open-ethereum-pool
+
+ADD ./startup.sh .
+
+ENTRYPOINT ["./startup.sh"]
+
