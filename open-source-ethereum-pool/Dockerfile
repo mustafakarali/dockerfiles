@@ -16,6 +16,7 @@ RUN export GOPATH=$HOME/go \
 WORKDIR open-ethereum-pool
 
 ADD ./startup.sh .
+RUN chmod +x ./startup.sh
 
 ENTRYPOINT ["./startup.sh"]
 
