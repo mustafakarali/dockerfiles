@@ -1,2 +1,2 @@
-echo Test
-echo $apilisten
+echo $1 > config.json
+./ether-pool config.json
