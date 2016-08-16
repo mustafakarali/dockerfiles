@@ -1,0 +1,35 @@
+version: '2'
+services:
+    web:
+        build: ./shimmie
+        ports:
+            # Choose ports as you want, if you do not need SSL, skip forwarding 433
+            - "8080:80"
+            - "8433:433"
+        volumes:
+            # Shimmie is put here
+            # If you don't want to interact with them you can remove this
+            # Images and such is stored here however
+            # Remember to have the www have rights to this!
+            - /home/daniel/docker/containers/shimmie/application/:/var/www/html/
+            # Apache ships without a real certificate, if you want to add your own this is a nice way to do it
+            #delete if you don't need ssl
+            - /home/daniel/docker/containers/shimmie/ssl
+        depends_on:
+            - mysql
+        links:
+            - mysql
+    # If you already have an sql server, what are you doing with this docker-compose. Just use the dockerfile itself and link it to it!
+    mysql:
+        image: mysql:latest
+        environment:
+            # You might want to change these.
+            - MYSQL_RANDOM_ROOT_PASSWORD=yes
+            - MYSQL_DATABASE=shimmie
+            - MYSQL_USER=shimmie
+            # Especially this
+            - MYSQL_PASSWORD=shish
+        volumes:
+            # If you want to have access to the db on a file level this is a smart setup
+            - /home/daniel/docker/containers/shimmie/mysql:/var/lib/mysql
+
