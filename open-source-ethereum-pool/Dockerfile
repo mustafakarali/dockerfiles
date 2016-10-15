@@ -1,17 +1,20 @@
 FROM golang:1.6
 
-RUN apt-get install git
-RUN export GOPATH=$HOME/go \
-    && go get github.com/ethereum/ethash \
-    && go get github.com/ethereum/go-ethereum/common \
-    && go get github.com/gorilla/mux \
-    && go get gopkg.in/redis.v3 \
-    && go get github.com/yvasiyarov/gorelic
-    
-RUN export GOPATH=$HOME/go \
-    && git clone https://github.com/sammy007/open-ethereum-pool.git \
-    && cd open-ethereum-pool \
-    && go build -o ether-pool main.go
+RUN apt-get update && apt-get install -y git software-properties-common && \
+    add-apt-repository -y ppa:ethereum/ethereum && \
+    add-apt-repository -y ppa:ethereum/ethereum-dev && \
+    apt-get update && \
+    apt-get install -y ethereum
+
+     
+RUN git clone https://github.com/sammy007/open-ethereum-pool.git && \
+    cd open-ethereum-pool && \
+    make
+
+
+RUN ./build/bin/open-ethereum-pool config.json 
+
+
 
 WORKDIR open-ethereum-pool
 
